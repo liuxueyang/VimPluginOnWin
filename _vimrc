@@ -1,5 +1,5 @@
 " 1. Put the following line into $VIM/_vimrc
-" source $VIM/vimfiles/_vimrc
+" 			source $VIM/vimfiles/_vimrc
 "
 " 2. name this file with name: _vimrc
 "
@@ -15,7 +15,7 @@
 "
 "
 " ********************SET********************
-color desert
+color molokai
 set nocompatible
 set guifont=Consolas:h13
 set fileencodings=utf-8,gbk
@@ -102,7 +102,7 @@ set guioptions-=m
 hi LineNr guifg=#857b6f guibg=#000000 gui=none
 hi LineNr ctermfg=101 ctermbg=16 term=none
 "au GUIEnter * call libcallnr("vimtweak.dll", "SetAlpha", 234)inoremap ( ()<esc>i
-let g:C_CFlags = '-D NDEBUG -Wall -g -O0 -c'
+" let g:C_CFlags = '-D NDEBUG -Wall -g -O0 -c -I D:\Dev-Cpp\bin\g++'
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 
@@ -166,5 +166,6 @@ function! s:align()
 endfunction
 
 
+let g:molokai_original = 1
 
 
