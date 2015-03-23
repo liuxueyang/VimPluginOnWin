@@ -11,18 +11,51 @@
 " Aries mu (liuxueyang)
 " =====================================================
 "
-"
+if(has("win32") || has("win95") || has("win64") || has("win16")) "判定当前操作系统类型
+    let g:iswindows=1
+else
+    let g:iswindows=0
+endif
+set nocompatible "不要vim模仿vi模式，建议设置，否则会有很多不兼容的问题
+syntax on"打开高亮
+if has("autocmd")
+    filetype plugin indent on "根据文件进行缩进
+    augroup vimrcEx
+        au!
+        autocmd FileType text setlocal textwidth=78
+        autocmd BufReadPost *
+                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                    \ exe "normal! g`\"" |
+                    \ endif
+    augroup END
+else
+    "智能缩进，相应的有cindent，官方说autoindent可以支持各种文件的缩进，但是效果会比只支持C/C++的cindent效果会差一点，但笔者并没有看出来
+    set autoindent " always set autoindenting on 
+endif " has("autocmd")
+set tabstop=4 "让一个tab等于4个空格
+set vb t_vb=
+set nowrap "不自动换行
+set backspace=indent,eol,start whichwrap+=<,>,[,] "允许退格键的使用
+if(g:iswindows==1) "允许鼠标的使用
+    "防止linux终端下无法拷贝
+    if has('mouse')
+        set mouse=a
+    endif
+    au GUIEnter * simalt ~x
+endif
+"字体的设置
+"set guifont=Bitstream_Vera_Sans_Mono:h12:cANSI "记住空格用下划线代替哦
+set guifont=Bitstream_Vera_Sans_Mono:h12
+"set gfw=幼圆:h10:cGB2312
 "
 "
 " ********************SET********************
 color molokai
-set nocompatible
-set guifont=Consolas:h13
+"set guifont=Consolas:h13
 set fileencodings=utf-8,gbk
 set nu numberwidth=5
 set cindent
 set ai
-set tabstop=2
 set shiftwidth=2 
 set mouse=a
 set autochdir
@@ -165,7 +198,12 @@ function! s:align()
   endif
 endfunction
 
-
 let g:molokai_original = 1
+
+" cvim ===============
+let  g:C_UseTool_cmake    = 'yes'
+let  g:C_UseTool_doxygen = 'yes' 
+" ====================
+
 
 
